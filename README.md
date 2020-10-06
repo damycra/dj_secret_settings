@@ -1,13 +1,13 @@
 Yet Another Django Settings Helper
 ==================================
 
-This package allows the source of some (or nearly all) settings to be easily changed for dev/Staging/Production etc purposes. E.g. One might obtain development settings from the environment but deploy to Google Compute Engine where use of Google Secret Manager is recommended. If the app later finds its way onto AWS, an aws adaptor can be installed or written.
+This package allows the source of some (or nearly all) settings to be easily changed for dev/Staging/Production etc purposes. e.g. One might obtain development settings from the process environment but later deploy to Google Compute Engine where use of Google Secret Manager is recommended. If the app later finds its way onto AWS, a suitable adaptor can be installed or written.
 
-# Installation
+## Installation
 
     pip install dj_secret_settings
 
-# Configuration
+## Configuration
 
 Install settings fetchers to get the raw data from the store, and settings stores to make sense of the raw data and return pieces of it on demand.
 
@@ -19,7 +19,7 @@ e.g. `json+gsm://anything-here-perhaps-service-account/projects/123456789/secret
 
 \* configuration of this is obviously required too
 
-# Usage
+## Usage
 
     from dj_secret_settings import settings_store
     store = settings.store.load("json+gsm://anything-here-perhaps-service-account/projects/123456789/secrets/my-secret/versions/42")
