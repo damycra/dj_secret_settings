@@ -43,7 +43,9 @@ def _get_fetcher_module(fetcher_type: str):
                 f".fetchers.from_{fetcher_type}", package=__package__
             )
         except ImportError:
-            raise NotInstalled(f"If [{fetcher_type}] is correct, install or implement dj_secret_settings_{fetcher_type}") from ie
+            raise NotInstalled(
+                f"If [{fetcher_type}] is correct, install or implement dj_secret_settings_{fetcher_type}"
+            ) from ie
     return module
 
 
@@ -57,7 +59,9 @@ def _get_store_factory(store_type: str):
                 f".stores.from_{store_type}", package=__package__
             )
         except ImportError:
-            raise NotInstalled(f"If [{store_type}] is correct, install or implement dj_secret_settings_{store_type}") from ie
+            raise NotInstalled(
+                f"If [{store_type}] is correct, install or implement dj_secret_settings_{store_type}"
+            ) from ie
     return module.get_store
 
 
