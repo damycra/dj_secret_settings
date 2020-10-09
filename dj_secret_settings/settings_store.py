@@ -34,7 +34,6 @@ class SettingsStore(Protocol):
 
 
 def _get_fetcher_module(fetcher_type: str):
-    print(f"PACKAGE {__package__}")
     try:
         module = importlib.import_module(f"dj_secret_settings_{fetcher_type}")
     except ImportError as ie:
@@ -50,7 +49,6 @@ def _get_fetcher_module(fetcher_type: str):
 
 
 def _get_store_factory(store_type: str):
-    print(f"PACKAGE {__package__}")
     try:
         module = importlib.import_module(f"dj_secret_settings_{store_type}")
     except ImportError as ie:
