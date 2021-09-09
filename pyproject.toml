@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "dj_secret_settings"
+version = "0.1.0"
+description = "Provide settings to Django from a secret store such as Google Cloud Secrets"
+authors = ["Steven Davidson <github@damycra.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+google-cloud-secret-manager = { version = "^2.7.0", optional = true}
+
+[tool.poetry.extras]
+google_secret_manager = ["google-cloud-secret-manager"]
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+pytest-mock = "^3.6.1"
+coverage = "^5.5"
+pre-commit = "^2.15.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
