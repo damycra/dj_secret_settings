@@ -27,18 +27,11 @@ class JsonSettingsStore:
 
     def get_bool(self, key: str, default: bool = False) -> bool:
         value = self.data.get(key, default)
-        # WILL return true for 'false'? test and eliminate TODO
-        return (
-            bool(
-                (
-                    value.lower() in ("true", "yes", "on", "1")
-                    if isinstance(value, str)
-                    else value
-                )
+        if not isinstance(value, bool):
+            raise TypeError(
+                f"Resulting value (from key: [{key}] and default: [{default}]) must be a bool type"
             )
-            if value != default
-            else default
-        )
+        return value
 
     def get_mapping(self, key: str, default: Mapping = None) -> Mapping:
         value = self.data.get(key) or default

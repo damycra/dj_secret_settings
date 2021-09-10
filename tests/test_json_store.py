@@ -122,29 +122,52 @@ def test_coerce_throws_error(data, coerce):
     "data",
     [
         '{"key": "true"}',
-        '{"key": "1"}',
-        '{"key": "on"}',
-        '{"key": "yes"}',
+        '{"key": 1}',
+        '{"key": [1,2,3]}',
+        '{"key": {"k2": 4}}',
     ],
 )
-def test_true_string_evaluates_true(data):
+def test_non_bool_raises_error(data):
     store = JsonSettingsStore(data)
+    with pytest.raises(TypeError):
+        store.get_bool("key")
+
+
+def test_true_value_evaluates_true():
+    store = JsonSettingsStore('{"key": true}')
     assert store.get_bool("key") == True
 
 
+def test_false_value_evaluates_true():
+    store = JsonSettingsStore('{"key": false}')
+    assert store.get_bool("key") == False
+
+
 @pytest.mark.parametrize(
-    "data",
+    "default",
     [
-        '{"key": "false"}',
-        '{"key": "0"}',
-        '{"key": "no"}',
-        '{"key": "off"}',
-        '{"key": "anything"}',
+        None,
+        1,
+        [1, 2, 3],
+        {"key": 4},
     ],
 )
-def test_false_string_evaluates_false(data):
-    store = JsonSettingsStore(data)
-    assert store.get_bool("key", default=True) == False
+def test_non_bool_default_raises_error(default):
+    store = JsonSettingsStore("{}")
+    with pytest.raises(TypeError):
+        store.get_bool("non-key", default)
+
+
+@pytest.mark.parametrize(
+    "default",
+    [
+        True,
+        False,
+    ],
+)
+def test_bool_default_ok(default):
+    store = JsonSettingsStore("{}")
+    assert store.get_bool("non-key", default) == default
 
 
 def test_map_returned():
