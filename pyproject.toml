@@ -31,7 +31,21 @@ pytest = "^6.2.4"
 pytest-mock = "^3.6.1"
 coverage = "^5.5"
 pre-commit = "^2.15.0"
+tox = "^3.24.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = true
+envlist = py37, py38, py39
+
+[testenv]
+whitelist_externals = poetry
+commands =
+    poetry install -v -E google_secret_manager
+    poetry run pytest
+"""
