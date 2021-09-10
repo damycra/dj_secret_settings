@@ -5,6 +5,8 @@ This library allows secret settings to be easily changed for dev/Staging/Product
 
 I tend to put all the secret settings for an environment in a single secret as a JSON document, for cost and convenience. You can also put non-secret settings in the same document or install them as environment variables as you prefer.
 
+** I have no affiliation with Google, Amazon or any other cloud computing provider! **
+
 ## Installation
 
     pip install dj_secret_settings

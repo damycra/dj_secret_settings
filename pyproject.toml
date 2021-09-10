@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dj_secret_settings"
-version = "0.1.0"
+version = "0.1.1"
 description = "Provide settings to Django from a secret store such as Google Cloud Secrets"
 authors = ["Steven Davidson <github@damycra.com>"]
 readme = "README.md"
