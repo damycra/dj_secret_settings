@@ -19,6 +19,14 @@ class NotInstalled(Exception):
     pass
 
 
+class DoNotCoerceBool(Exception):
+    pass
+
+
+class BadData(Exception):
+    pass
+
+
 class SettingsStore(Protocol):
     def get_value(self, key: str, default=None, coerce_type: Type = None):
         pass

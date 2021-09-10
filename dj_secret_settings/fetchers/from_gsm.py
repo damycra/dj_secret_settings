@@ -1,4 +1,12 @@
-from google.cloud import secretmanager
+from dj_secret_settings.settings_store import NotInstalled
+
+
+try:
+    from google.cloud import secretmanager
+except ImportError:
+    raise NotInstalled(
+        "Install Google Cloud secret manager; pip install google-cloud-secret-manager"
+    )
 
 
 def fetch(service_account: str, path: str, *args) -> str:
